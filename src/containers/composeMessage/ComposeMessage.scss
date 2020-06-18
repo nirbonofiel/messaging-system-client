@@ -1,0 +1,55 @@
+@import '../../styles/variables.scss';
+
+.compose-container {
+  margin-top: 50px;
+  .email-form {
+    box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .submit-btn {
+    margin: 20px 10px 10px 10px;
+  }
+
+  .form-title {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #f1f1f1;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .input-style {
+    width: 100%;
+    padding: 5px 10px;
+    border: none;
+  }
+
+  .me-title {
+    padding: 5px 10px;
+    color: rgba(0, 0, 0, 0.75);
+  }
+
+  .input-style:focus {
+    outline-style: none;
+  }
+
+  .toast-body {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #f1f1f1;
+    padding: 1rem;
+    font-size: 16px;
+  }
+
+  .toast {
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
+    right: 12px;
+  }
+}
