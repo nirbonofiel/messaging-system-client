@@ -8,7 +8,7 @@ import {
   Route,
 } from 'react-router-dom';
 import ComposeMessage from './containers/composeMessage/ComposeMessage';
-import Login from './containers/login/Login';
+import Login from './containers/auth/Login';
 
 function App() {
   return (

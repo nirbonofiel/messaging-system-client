@@ -1,9 +1,7 @@
 import MessagingApi from '../api/messagingSystem';
 
 import * as actionType from '../store/actionTypes';
-
-const token =
-  'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Im1lc3NhZ2luZ19zeXN0ZW1fYWRtaW4iLCJleHAiOjE1OTI5MjA2MjEsImVtYWlsIjoiIiwib3JpZ19pYXQiOjE1OTIzMTU4MjF9.iqAxJ8gWlaWVcXURQPt0p8zj5BMYSV4vNz4uXAsntwk';
+import { getToken } from './authActions';
 
 export const createMessage = (message) => {
   return (dispatch) => {
@@ -17,7 +15,7 @@ export const createMessage = (message) => {
       },
       {
         headers: {
-          Authorization: token,
+          Authorization: getToken(),
           'Content-type': 'Application/json',
         },
       }
@@ -31,7 +29,7 @@ export const getUsers = () => {
   return (dispatch) => {
     MessagingApi.get('users/', {
       headers: {
-        Authorization: token,
+        Authorization: getToken(),
         'Content-type': 'Application/json',
       },
     })
@@ -44,7 +42,7 @@ export const getMe = () => {
   return (dispatch) => {
     MessagingApi.get('users/me/', {
       headers: {
-        Authorization: token,
+        Authorization: getToken(),
         'Content-type': 'Application/json',
       },
     })
