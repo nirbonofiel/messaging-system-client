@@ -1,16 +1,17 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import './ComposeMessage.scss';
 import serialize from 'form-serialize';
-import {
-  createMessage,
-  getUsers,
-  getMe,
-} from '../../services/messagingSystemActions';
+import { createMessage, getUsers } from '../../services/composeMessageActions';
+import { getMe } from '../../services/authActions';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { Toast } from 'react-bootstrap';
+import CustomModal from '../../components/customModal/CustomModal';
 
 const ComposeMessage = () => {
   const messagingSystemSelector = useSelector((state) => state.messagingSystem);
+  const authSelector = useSelector((state) => state.auth);
+  const applictionlSelector = useSelector((state) => state.application);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
@@ -27,7 +28,10 @@ const ComposeMessage = () => {
   }, [dispatch]);
 
   useMemo(() => {
-    if (messagingSystemSelector.sentMessageSeccuess) {
+    if (
+      messagingSystemSelector.sentMessageSeccuess &&
+      document.getElementById('email-form') != null
+    ) {
       document.getElementById('email-form').reset();
       setShow(true);
     }
@@ -35,16 +39,23 @@ const ComposeMessage = () => {
 
   return (
     <div className="container compose-container">
+      {applictionlSelector.errorMsg !== null ? (
+        <CustomModal
+          modalType={'error'}
+          error={applictionlSelector.errorMsg}
+          show={applictionlSelector.modalShow}
+        />
+      ) : null}
       <form id="email-form" className="email-form" onSubmit={submitMessage}>
         <h3 className="form-title">New Message</h3>
         <div className="form-grid container">
           <div className="row">
-            {messagingSystemSelector.me ? (
+            {authSelector.me ? (
               <React.Fragment>
                 <span className="col-1 me-title">Me Id:</span>
                 <input
                   type="text"
-                  value={messagingSystemSelector.me.id}
+                  value={authSelector.me.id}
                   className="input-style col-5"
                   name="sender"
                   required

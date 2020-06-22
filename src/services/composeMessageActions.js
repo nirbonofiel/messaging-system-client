@@ -1,7 +1,8 @@
 import MessagingApi from '../api/messagingSystem';
 
 import * as actionType from '../store/actionTypes';
-import { getToken } from './authActions';
+import { getItemFromLocalStorage } from './authActions';
+import { errorHandler } from './application';
 
 export const createMessage = (message) => {
   return (dispatch) => {
@@ -15,13 +16,13 @@ export const createMessage = (message) => {
       },
       {
         headers: {
-          Authorization: getToken(),
+          Authorization: getItemFromLocalStorage('token'),
           'Content-type': 'Application/json',
         },
       }
     )
       .then((res) => dispatch(createMessageSuccess()))
-      .catch((err) => console.log('Something went wrong'));
+      .catch((err) => dispatch(errorHandler('Something went wrong')));
   };
 };
 
@@ -29,25 +30,12 @@ export const getUsers = () => {
   return (dispatch) => {
     MessagingApi.get('users/', {
       headers: {
-        Authorization: getToken(),
+        Authorization: getItemFromLocalStorage('token'),
         'Content-type': 'Application/json',
       },
     })
       .then((res) => dispatch(getAllUser(res)))
-      .catch((err) => console.log('Something went wrong'));
-  };
-};
-
-export const getMe = () => {
-  return (dispatch) => {
-    MessagingApi.get('users/me/', {
-      headers: {
-        Authorization: getToken(),
-        'Content-type': 'Application/json',
-      },
-    })
-      .then((res) => dispatch(getUserMe(res)))
-      .catch((err) => console.log('Something went wrong'));
+      .catch((err) => dispatch(errorHandler('Something went wrong')));
   };
 };
 
@@ -62,12 +50,5 @@ const getAllUser = (res) => {
   return {
     type: actionType.GET_USERS,
     payload: { users: res.data.data },
-  };
-};
-
-const getUserMe = (res) => {
-  return {
-    type: actionType.GET_ME,
-    payload: { me: res.data.data },
   };
 };

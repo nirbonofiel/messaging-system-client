@@ -1,0 +1,12 @@
+.email-title {
+  margin-right: 10px;
+}
+
+.nav-link.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.nav-link.disabled.active {
+  color: rgba(255, 255, 255, 0.25);
+}

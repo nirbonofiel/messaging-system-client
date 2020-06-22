@@ -1,7 +1,9 @@
 import * as actionType from '../actionTypes';
+import { User } from '../../models/user';
 
 const initialState = {
   isAuthticated: false,
+  me: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,6 +17,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthticated: false,
+      };
+    case actionType.GET_ME:
+      const user = new User(action.payload.me.id, action.payload.me.username);
+      return {
+        ...state,
+        me: user,
       };
     default:
       return state;

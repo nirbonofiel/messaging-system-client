@@ -4,7 +4,6 @@ import { User } from '../../models/user';
 const initialState = {
   sentMessageSeccuess: false,
   users: [],
-  me: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,12 +22,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         users: users,
       };
-    case actionType.GET_ME:
-      const user = new User(action.payload.me.id, action.payload.me.username);
-      return {
-        ...state,
-        me: user,
-      };
+
     default:
       return state;
   }

@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../services/authActions';
 import { useHistory } from 'react-router-dom';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
+import CustomModal from '../../components/customModal/CustomModal';
 
 const Login = () => {
   const dispatch = useDispatch();
   const authSelector = useSelector((state) => state.auth);
+  const applictionlSelector = useSelector((state) => state.application);
   const history = useHistory();
 
   const submitLogin = (event) => {
@@ -26,6 +28,13 @@ const Login = () => {
 
   return (
     <div className="container login-container">
+      {applictionlSelector.errorMsg !== null ? (
+        <CustomModal
+          modalType={'error'}
+          error={applictionlSelector.errorMsg}
+          show={applictionlSelector.modalShow}
+        />
+      ) : null}
       <form id="login-form" className="login-form" onSubmit={submitLogin}>
         <h3 className="form-title">Login</h3>
         <div className="form-grid container">

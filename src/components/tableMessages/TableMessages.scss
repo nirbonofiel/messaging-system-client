@@ -1,0 +1,36 @@
+.table-container {
+  padding: 15px;
+}
+.msg-subject {
+  font-weight: 600;
+}
+
+.msg-body {
+  max-width: 40%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+table {
+  margin-top: 40px;
+  background-color: #fff;
+}
+
+td {
+  border: none;
+}
+.delete-icon:hover {
+  color: #dc3545;
+}
+
+.nav {
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.no-msg-display {
+  text-align: center;
+  font-size: 22px;
+  margin-top: 40px;
+}

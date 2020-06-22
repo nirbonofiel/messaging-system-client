@@ -7,7 +7,10 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import messagingSystemReducer from './store/reducers/messagingSystem';
 import authReducer from './store/reducers/auth';
+import manageEmailsReducer from './store/reducers/manageEmails';
+import applicationReducer from './store/reducers/application.js';
 import thunk from 'redux-thunk';
+import { BrowserRouter } from 'react-router-dom';
 
 const composeEnhancers =
   process.env.NODE_ENV === 'development'
@@ -17,6 +20,8 @@ const composeEnhancers =
 const rootReducer = combineReducers({
   messagingSystem: messagingSystemReducer,
   auth: authReducer,
+  manageEmails: manageEmailsReducer,
+  application: applicationReducer,
 });
 
 const store = createStore(
@@ -26,7 +31,9 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
