@@ -1,4 +1,5 @@
 import * as actionType from '../actionTypes';
+import { Message } from '../../models/message';
 
 const initialState = {
   sent: [],
@@ -14,7 +15,16 @@ const reducer = (state = initialState, action) => {
 
       for (var i = 0; i < action.payload.messages.length; i++) {
         if (action.payload.messages[i].sender === +action.payload.userId) {
-          sentMessages.push(action.payload.messages[i]);
+          sentMessages.push(
+            new Message(
+              action.payload.messages[i].id,
+              action.payload.messages[i].sender,
+              action.payload.messages[i].receiver,
+              action.payload.messages[i].body,
+              action.payload.messages[i].subject,
+              action.payload.messages[i].creation_date
+            )
+          );
         } else {
           inboxMessages.push(action.payload.messages[i]);
         }
