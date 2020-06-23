@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ComposeMessage.scss';
 import serialize from 'form-serialize';
 import {
@@ -39,16 +39,6 @@ const ComposeMessage = () => {
     dispatch(getUsers());
     dispatch(getMe());
   }, [dispatch, composeMessageSelector.sentMessageSuccess]);
-
-  // useCallback(() => {
-  //   if (
-  //     composeMessageSelector.sentMessageSuccess &&
-  //     document.getElementById('email-form') != null
-  //   ) {
-  //     document.getElementById('email-form').reset();
-  //     setShow(true);
-  //   }
-  // }, [composeMessageSelector.sentMessageSuccess]);
 
   return (
     <div className="container compose-container">

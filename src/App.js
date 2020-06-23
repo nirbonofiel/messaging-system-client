@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.scss';
+
 import { Switch, Redirect, Route } from 'react-router-dom';
 import ComposeMessage from './containers/composeMessage/ComposeMessage';
 import Login from './containers/auth/Login';

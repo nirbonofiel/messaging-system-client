@@ -30,17 +30,17 @@ export const deleteMessage = (messageId) => {
   };
 };
 
-const getUserMessages = (res, userId) => {
-  return {
-    type: actionType.GET_USER_MESSAGES,
-    payload: { messages: res.data.data, userId: userId },
-  };
-};
-
 export const changeTabType = (type) => {
   return {
     type: actionType.CHANGE_TAB_TYPE,
     payload: { type: type },
+  };
+};
+
+const getUserMessages = (res, userId) => {
+  return {
+    type: actionType.GET_USER_MESSAGES,
+    payload: { messages: res.data.data, userId: userId },
   };
 };
 

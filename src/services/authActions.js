@@ -35,16 +35,6 @@ export const getMe = () => {
   };
 };
 
-const setToken = (res) => {
-  const token = `JWT ${res.data.data.token}`;
-  localStorage.setItem('token', token);
-
-  return {
-    type: actionType.LOGIN,
-    payload: { isAuthticated: true },
-  };
-};
-
 export const getItemFromLocalStorage = (item) => {
   return localStorage.getItem(item);
 };
@@ -64,5 +54,15 @@ const getUserMe = (res) => {
   return {
     type: actionType.GET_ME,
     payload: { me: user },
+  };
+};
+
+const setToken = (res) => {
+  const token = `JWT ${res.data.data.token}`;
+  localStorage.setItem('token', token);
+
+  return {
+    type: actionType.LOGIN,
+    payload: { isAuthticated: true },
   };
 };
