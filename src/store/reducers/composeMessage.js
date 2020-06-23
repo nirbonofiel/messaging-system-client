@@ -2,16 +2,21 @@ import * as actionType from '../actionTypes';
 import { User } from '../../models/user';
 
 const initialState = {
-  sentMessageSeccuess: false,
+  sentMessageSuccess: false,
   users: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionType.CREATE_MESSAGE_SUCCESS:
+    case actionType.CREATE_MESSAGE:
       return {
         ...state,
-        sentMessageSeccuess: action.payload.sentMessageSeccuess,
+        sentMessageSuccess: action.payload.sentMessageSuccess,
+      };
+    case actionType.MESSAGE_CREATED_SUCCESSFULLY:
+      return {
+        ...state,
+        sentMessageSuccess: action.payload.sentMessageSuccess,
       };
     case actionType.GET_USERS:
       const users = action.payload.users.map((user) => {

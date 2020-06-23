@@ -4,12 +4,16 @@ import { MdEmail } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import './Layout.scss';
 import { useSelector } from 'react-redux';
+import Logout from '../../containers/auth/Logout';
 
 const Layout = (props) => {
   const authSelector = useSelector((state) => state.auth);
   let disabledClass = 'nav-link';
+  let logout = <Logout />;
+
   if (!authSelector.isAuthticated) {
     disabledClass += ' disabled';
+    logout = null;
   }
   return (
     <div>
@@ -26,6 +30,7 @@ const Layout = (props) => {
             <NavLink className={disabledClass} to="/manage">
               Manage Emails
             </NavLink>
+            {logout}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

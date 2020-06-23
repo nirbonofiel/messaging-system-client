@@ -11,11 +11,13 @@ import TableMessages from '../../components/tableMessages/TableMessages';
 import './ManageEmails.scss';
 import CustomModal from '../../components/customModal/CustomModal';
 import { openModalMsg, closeModalMsg } from '../../services/application';
+import Search from '../../components/search/Search';
 
 const ManageEmails = () => {
   const manageEmailsSelector = useSelector((state) => state.manageEmails);
   const applictionlSelector = useSelector((state) => state.application);
   const [messageId, setMessageId] = useState('');
+  const [query, setQuery] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,6 +36,18 @@ const ManageEmails = () => {
 
   const clickHandler = (type) => {
     dispatch(changeTabType(type));
+  };
+
+  const getFilteredList = (list) => {
+    let newList = list;
+    if (query != null && query > 0) {
+      if (manageEmailsSelector.type === 'inbox') {
+        newList = list.filter((index) => index.sender === query);
+      } else {
+        newList = list.filter((index) => index.receiver === query);
+      }
+    }
+    return newList;
   };
 
   return (
@@ -66,19 +80,23 @@ const ManageEmails = () => {
         modalBody="Are you sure you want to delete this message?"
         modalTitle="Delete Message"
       />
-
+      <Search changeHandler={setQuery} query={query}></Search>
       {manageEmailsSelector.type === 'inbox' ? (
-        <TableMessages
-          messages={manageEmailsSelector.inbox}
-          deleteMessage={openModalTODelete}
-          userType={'sender id'}
-        />
+        <React.Fragment>
+          <TableMessages
+            messages={getFilteredList(manageEmailsSelector.inbox)}
+            deleteMessage={openModalTODelete}
+            userType={'sender id'}
+          />
+        </React.Fragment>
       ) : (
-        <TableMessages
-          messages={manageEmailsSelector.sent}
-          deleteMessage={openModalTODelete}
-          userType={'receiver id'}
-        />
+        <React.Fragment>
+          <TableMessages
+            messages={getFilteredList(manageEmailsSelector.sent)}
+            deleteMessage={openModalTODelete}
+            userType={'receiver id'}
+          />
+        </React.Fragment>
       )}
     </div>
   );

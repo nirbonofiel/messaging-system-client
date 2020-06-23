@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import messagingSystemReducer from './store/reducers/messagingSystem';
+import composeMessageReducer from './store/reducers/composeMessage';
 import authReducer from './store/reducers/auth';
 import manageEmailsReducer from './store/reducers/manageEmails';
 import applicationReducer from './store/reducers/application.js';
@@ -18,7 +18,7 @@ const composeEnhancers =
     : null || compose;
 
 const rootReducer = combineReducers({
-  messagingSystem: messagingSystemReducer,
+  composeMessage: composeMessageReducer,
   auth: authReducer,
   manageEmails: manageEmailsReducer,
   application: applicationReducer,

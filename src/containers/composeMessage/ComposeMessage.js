@@ -1,7 +1,11 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import './ComposeMessage.scss';
 import serialize from 'form-serialize';
-import { createMessage, getUsers } from '../../services/composeMessageActions';
+import {
+  createMessage,
+  getUsers,
+  messageCreatedSuccessfully,
+} from '../../services/composeMessageActions';
 import { getMe } from '../../services/authActions';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,7 +13,7 @@ import { Toast } from 'react-bootstrap';
 import CustomModal from '../../components/customModal/CustomModal';
 
 const ComposeMessage = () => {
-  const messagingSystemSelector = useSelector((state) => state.messagingSystem);
+  const composeMessageSelector = useSelector((state) => state.composeMessage);
   const authSelector = useSelector((state) => state.auth);
   const applictionlSelector = useSelector((state) => state.application);
   const dispatch = useDispatch();
@@ -23,19 +27,28 @@ const ComposeMessage = () => {
   };
 
   useEffect(() => {
-    dispatch(getUsers());
-    dispatch(getMe());
-  }, [dispatch]);
-
-  useMemo(() => {
     if (
-      messagingSystemSelector.sentMessageSeccuess &&
+      composeMessageSelector.sentMessageSuccess &&
       document.getElementById('email-form') != null
     ) {
       document.getElementById('email-form').reset();
       setShow(true);
+      dispatch(messageCreatedSuccessfully());
     }
-  }, [messagingSystemSelector.sentMessageSeccuess]);
+
+    dispatch(getUsers());
+    dispatch(getMe());
+  }, [dispatch, composeMessageSelector.sentMessageSuccess]);
+
+  // useCallback(() => {
+  //   if (
+  //     composeMessageSelector.sentMessageSuccess &&
+  //     document.getElementById('email-form') != null
+  //   ) {
+  //     document.getElementById('email-form').reset();
+  //     setShow(true);
+  //   }
+  // }, [composeMessageSelector.sentMessageSuccess]);
 
   return (
     <div className="container compose-container">
@@ -74,7 +87,7 @@ const ComposeMessage = () => {
               <option className="input-style" value="">
                 Choose receiver...
               </option>
-              {messagingSystemSelector.users.map((user) => (
+              {composeMessageSelector.users.map((user) => (
                 <option value={user.id} key={user.id}>
                   Id: {user.id} | Username: {user.username}
                 </option>
@@ -102,17 +115,16 @@ const ComposeMessage = () => {
           Send
         </button>
       </form>
-      {messagingSystemSelector.sentMessageSeccuess ? (
-        <Toast
-          onClose={() => setShow(false)}
-          show={show}
-          delay={1500}
-          autohide={true}
-          animation
-        >
-          <Toast.Body>message sent successfully!</Toast.Body>
-        </Toast>
-      ) : null}
+
+      <Toast
+        onClose={() => setShow(false)}
+        show={show}
+        delay={1500}
+        autohide={true}
+        animation
+      >
+        <Toast.Body>message sent successfully!</Toast.Body>
+      </Toast>
     </div>
   );
 };

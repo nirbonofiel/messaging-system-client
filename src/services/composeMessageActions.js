@@ -39,10 +39,17 @@ export const getUsers = () => {
   };
 };
 
+export const messageCreatedSuccessfully = () => {
+  return {
+    type: actionType.MESSAGE_CREATED_SUCCESSFULLY,
+    payload: { sentMessageSuccess: false },
+  };
+};
+
 const createMessageSuccess = () => {
   return {
-    type: actionType.CREATE_MESSAGE_SUCCESS,
-    payload: { sentMessageSeccuess: true },
+    type: actionType.CREATE_MESSAGE,
+    payload: { sentMessageSuccess: true },
   };
 };
 

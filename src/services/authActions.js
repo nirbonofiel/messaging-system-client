@@ -49,6 +49,15 @@ export const getItemFromLocalStorage = (item) => {
   return localStorage.getItem(item);
 };
 
+export const logout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user_id');
+  return {
+    type: actionType.LOGOUT,
+    payload: { isAuthticated: false },
+  };
+};
+
 const getUserMe = (res) => {
   const user = res.data.data;
   localStorage.setItem('user_id', user.id);

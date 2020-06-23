@@ -46,6 +46,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         type: action.payload.type,
       };
+
     default:
       return state;
   }
