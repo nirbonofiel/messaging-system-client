@@ -22,7 +22,7 @@ const ManageEmails = () => {
 
   useEffect(() => {
     dispatch(getMessages(getItemFromLocalStorage('user_id')));
-  }, [dispatch]);
+  }, [dispatch, query]);
 
   const deleteHandler = () => {
     dispatch(deleteMessage(messageId));

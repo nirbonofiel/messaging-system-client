@@ -25,8 +25,8 @@ const reducer = (state = initialState, action) => {
         inbox: inboxMessages,
       };
     case actionType.DELETE_MESSAGE:
-      let updatedSent = [];
-      let updatedInbox = [];
+      let updatedSent = state.sent;
+      let updatedInbox = state.inbox;
       if (state.type === 'inbox') {
         updatedInbox = state.inbox.filter(
           (item) => item.id !== action.payload.messageId
