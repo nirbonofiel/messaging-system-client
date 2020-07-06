@@ -26,7 +26,16 @@ const reducer = (state = initialState, action) => {
             )
           );
         } else {
-          inboxMessages.push(action.payload.messages[i]);
+          inboxMessages.push(
+            new Message(
+              action.payload.messages[i].id,
+              action.payload.messages[i].sender,
+              action.payload.messages[i].receiver,
+              action.payload.messages[i].body,
+              action.payload.messages[i].subject,
+              action.payload.messages[i].creation_date
+            )
+          );
         }
       }
       return {

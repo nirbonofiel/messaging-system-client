@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { closeModalError, closeModalMsg } from '../../services/application';
+import { closeModalError, closeModalMsg } from '../../actions/application';
 import { useDispatch } from 'react-redux';
 import './CustomModal.scss';
 

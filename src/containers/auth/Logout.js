@@ -2,7 +2,7 @@ import React from 'react';
 import { FiLogOut } from 'react-icons/fi';
 import './Logout.scss';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../services/authActions';
+import { logout } from '../../actions/authActions';
 
 const Logout = () => {
   const dispatch = useDispatch();

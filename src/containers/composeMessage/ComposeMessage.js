@@ -5,12 +5,13 @@ import {
   createMessage,
   getUsers,
   messageCreatedSuccessfully,
-} from '../../services/composeMessageActions';
-import { getMe } from '../../services/authActions';
+} from '../../actions/composeMessageActions';
+import { getMe } from '../../actions/authActions';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Toast } from 'react-bootstrap';
 import CustomModal from '../../components/customModal/CustomModal';
+import { MdSend } from 'react-icons/md';
 
 const ComposeMessage = () => {
   const composeMessageSelector = useSelector((state) => state.composeMessage);
@@ -103,6 +104,7 @@ const ComposeMessage = () => {
           className="btn btn-primary submit-btn"
         >
           Send
+          <MdSend color="white" className="send-icon" />
         </button>
       </form>
 

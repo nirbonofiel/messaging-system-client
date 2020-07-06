@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './Login.scss';
 import serialize from 'form-serialize';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../services/authActions';
+import { login } from '../../actions/authActions';
 import { useHistory } from 'react-router-dom';
 import { FaUserAlt, FaLock } from 'react-icons/fa';
 import CustomModal from '../../components/customModal/CustomModal';

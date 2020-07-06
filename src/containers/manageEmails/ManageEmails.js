@@ -4,13 +4,13 @@ import {
   getMessages,
   deleteMessage,
   changeTabType,
-} from '../../services/manageEmailActions';
-import { getItemFromLocalStorage } from '../../services/authActions';
+} from '../../actions/manageEmailActions';
+import { getItemFromLocalStorage } from '../../actions/authActions';
 import { Nav } from 'react-bootstrap';
 import TableMessages from '../../components/tableMessages/TableMessages';
 import './ManageEmails.scss';
 import CustomModal from '../../components/customModal/CustomModal';
-import { openModalMsg, closeModalMsg } from '../../services/application';
+import { openModalMsg, closeModalMsg } from '../../actions/application';
 import Search from '../../components/search/Search';
 
 const ManageEmails = () => {
