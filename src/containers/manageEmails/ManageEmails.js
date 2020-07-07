@@ -42,9 +42,9 @@ const ManageEmails = () => {
     let newList = list;
     if (query != null && query > 0) {
       if (manageEmailsSelector.type === 'inbox') {
-        newList = list.filter((index) => index.sender === query);
+        newList = list.filter((index) => index.sender.id === query);
       } else {
-        newList = list.filter((index) => index.receiver === query);
+        newList = list.filter((index) => index.receiver.id === query);
       }
     }
     return newList;
@@ -86,7 +86,7 @@ const ManageEmails = () => {
           <TableMessages
             messages={getFilteredList(manageEmailsSelector.inbox)}
             deleteMessage={openModalTODelete}
-            userType={'sender id'}
+            userType={'sender'}
           />
         </React.Fragment>
       ) : (
@@ -94,7 +94,7 @@ const ManageEmails = () => {
           <TableMessages
             messages={getFilteredList(manageEmailsSelector.sent)}
             deleteMessage={openModalTODelete}
-            userType={'receiver id'}
+            userType={'receiver'}
           />
         </React.Fragment>
       )}

@@ -56,10 +56,10 @@ const ComposeMessage = () => {
           <div className="row">
             {authSelector.me ? (
               <React.Fragment>
-                <span className="col-1 me-title">Me Id:</span>
+                <span className="col-1 me-title">Username:</span>
                 <input
                   type="text"
-                  value={authSelector.me.id}
+                  value={authSelector.me.username}
                   className="input-style col-5"
                   name="sender"
                   required

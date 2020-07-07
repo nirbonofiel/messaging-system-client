@@ -24,10 +24,18 @@ const TableMessages = (props) => {
                     message.creationDate
                   )}
                 </td>
-                {props.userType === 'receiver id' ? (
-                  <td>{message.receiver}</td>
+                {props.userType === 'receiver' ? (
+                  message.receiver.id === message.sender.id ? (
+                    <td>Id: {message.receiver.id} | Me</td>
+                  ) : (
+                    <td>
+                      Id: {message.receiver.id} | {message.receiver.username}
+                    </td>
+                  )
                 ) : (
-                  <td>{message.sender}</td>
+                  <td>
+                    Id: {message.sender.id} | {message.sender.username}
+                  </td>
                 )}
                 <td className="msg-body">
                   <span className="msg-subject">{message.subject}</span> -{' '}

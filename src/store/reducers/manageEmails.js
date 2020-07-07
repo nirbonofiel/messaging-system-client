@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
       const inboxMessages = [];
 
       for (var i = 0; i < action.payload.messages.length; i++) {
-        if (action.payload.messages[i].sender === +action.payload.userId) {
+        if (action.payload.messages[i].sender.id === +action.payload.userId) {
           sentMessages.push(
             new Message(
               action.payload.messages[i].id,
