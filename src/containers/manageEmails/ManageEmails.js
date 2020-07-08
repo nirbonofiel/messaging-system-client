@@ -4,6 +4,7 @@ import {
   getMessages,
   deleteMessage,
   changeTabType,
+  getMessage,
 } from '../../actions/manageEmailActions';
 import { getItemFromLocalStorage } from '../../actions/authActions';
 import { Nav } from 'react-bootstrap';
@@ -12,6 +13,7 @@ import './ManageEmails.scss';
 import CustomModal from '../../components/customModal/CustomModal';
 import { openModalMsg, closeModalMsg } from '../../actions/application';
 import Search from '../../components/search/Search';
+import { useHistory } from 'react-router-dom';
 
 const ManageEmails = () => {
   const manageEmailsSelector = useSelector((state) => state.manageEmails);
@@ -19,6 +21,7 @@ const ManageEmails = () => {
   const [messageId, setMessageId] = useState('');
   const [query, setQuery] = useState();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getMessages(getItemFromLocalStorage('user_id')));
@@ -27,6 +30,13 @@ const ManageEmails = () => {
   const deleteHandler = () => {
     dispatch(deleteMessage(messageId));
     dispatch(closeModalMsg());
+  };
+
+  const openMessagePage = (id) => {
+    dispatch(getMessage(id));
+    if (applictionlSelector.errorMsg === null) {
+      history.push('/message');
+    }
   };
 
   const openModalTODelete = (messageId) => {
@@ -86,6 +96,7 @@ const ManageEmails = () => {
           <TableMessages
             messages={getFilteredList(manageEmailsSelector.inbox)}
             deleteMessage={openModalTODelete}
+            openMessage={openMessagePage}
             userType={'sender'}
           />
         </React.Fragment>
@@ -94,6 +105,7 @@ const ManageEmails = () => {
           <TableMessages
             messages={getFilteredList(manageEmailsSelector.sent)}
             deleteMessage={openModalTODelete}
+            openMessage={openMessagePage}
             userType={'receiver'}
           />
         </React.Fragment>

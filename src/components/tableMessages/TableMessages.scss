@@ -5,11 +5,16 @@
   font-weight: 600;
 }
 
+.table tbody tr:hover {
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.55);
+}
+
 .msg-body {
   max-width: 40%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 
 table {

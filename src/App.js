@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Switch, Redirect, Route } from 'react-router-dom';
 import ComposeMessage from './containers/composeMessage/ComposeMessage';
+import Message from './containers/message/Message';
 import Login from './containers/auth/Login';
 import Logout from './containers/auth/Logout';
 import ManageEmails from './containers/manageEmails/ManageEmails';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/compose" component={ComposeMessage} />
         <Route path="/manage" component={ManageEmails} />
         <Route path="/login" component={Login} />
+        <Route path="/message" component={Message} />
         <Redirect exact from={'/'} to={'/compose'} />
       </Switch>
     );

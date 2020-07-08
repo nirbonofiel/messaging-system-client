@@ -4,6 +4,7 @@ import { Message } from '../../models/message';
 const initialState = {
   sent: [],
   inbox: [],
+  currMessage: null,
   type: 'inbox',
 };
 
@@ -59,6 +60,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         sent: updatedSent,
         inbox: updatedInbox,
+      };
+    case actionType.GET_MESSAGE:
+      return {
+        ...state,
+        currMessage: action.payload.message,
       };
     case actionType.CHANGE_TAB_TYPE:
       return {

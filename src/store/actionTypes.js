@@ -14,3 +14,5 @@ export const ERROR_HANDLER = 'ERROR_HANDLER';
 export const HIDE_MODAL_ERROR = 'HIDE_MODAL_ERROR';
 export const HIDE_MODAL_MSG = 'HIDE_MODAL_MSG';
 export const OPEN_MODAL_MSG = 'OPEN_MODAL_MSG';
+
+export const GET_MESSAGE = 'GET_MESSAGE';

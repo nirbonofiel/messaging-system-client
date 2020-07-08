@@ -30,6 +30,19 @@ export const deleteMessage = (messageId) => {
   };
 };
 
+export const getMessage = (messageId) => {
+  return (dispatch) => {
+    MessagingApi.get(`messages/${messageId}/`, {
+      headers: {
+        Authorization: getItemFromLocalStorage('token'),
+        'Content-type': 'Application/json',
+      },
+    })
+      .then((res) => dispatch(getUserMessage(res)))
+      .catch((err) => dispatch(errorHandler('Something went wrong')));
+  };
+};
+
 export const changeTabType = (type) => {
   return {
     type: actionType.CHANGE_TAB_TYPE,
@@ -48,5 +61,12 @@ const deleteUserMessage = (messageId) => {
   return {
     type: actionType.DELETE_MESSAGE,
     payload: { messageId: messageId },
+  };
+};
+
+const getUserMessage = (res) => {
+  return {
+    type: actionType.GET_MESSAGE,
+    payload: { message: res.data.data },
   };
 };

@@ -59,12 +59,12 @@ const ComposeMessage = () => {
                 <span className="col-1 me-title">Username:</span>
                 <input
                   type="text"
-                  value={authSelector.me.username}
+                  placeholder={authSelector.me.username}
                   className="input-style col-5"
-                  name="sender"
                   required
                   readOnly
                 />
+                <input type="hidden" value={authSelector.me.id} name="sender" />
               </React.Fragment>
             ) : null}
 
